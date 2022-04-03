@@ -30,7 +30,7 @@ jobs:
           go tool cover -func=coverage.out
           go tool cover -html=coverage.out
           echo ${{env.IMAGE_TAG}}
-          echo $IMAGE_TAG
+          echo "$IMAGE_TAG"
 
   # build-image:
   #   needs: unit-test
