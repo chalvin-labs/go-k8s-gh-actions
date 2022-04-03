@@ -34,10 +34,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: 'Login via Azure CLI'
+      - name: Login via Azure CLI
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Test azure
         run: az group list
 
       # - uses: azure/docker-login@v1
