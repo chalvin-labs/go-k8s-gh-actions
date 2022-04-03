@@ -7,26 +7,26 @@ on:
   #   branches: [master]
 
 jobs:
-  unit-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  # unit-test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
 
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version: 1.18
+  #     - name: Set up Go
+  #       uses: actions/setup-go@v3
+  #       with:
+  #         go-version: 1.18
 
-      - name: Unit test
-        run: |
-          go test ./... -covermode=count -coverprofile=coverage.out
-          go test ./... -coverprofile=unit-test.out -json > unit-test.json
+  #     - name: Unit test
+  #       run: |
+  #         go test ./... -covermode=count -coverprofile=coverage.out
+  #         go test ./... -coverprofile=unit-test.out -json > unit-test.json
 
-      - name: Code coverage
-        run: |
-          go tool cover -func=coverage.out
-          go tool cover -html=coverage.out
+  #     - name: Code coverage
+  #       run: |
+  #         go tool cover -func=coverage.out
+  #         go tool cover -html=coverage.out
 
   build-image:
     runs-on: ubuntu-latest
@@ -34,22 +34,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Login via Azure CLI
+      - name: Login to Azure CLI
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Test azure
-        run: az group list
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: pipelinexample.azurecr.io
+          username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+          password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
 
-      # - uses: azure/docker-login@v1
-      #   with:
-      #     login-server: contoso.azurecr.io
-      #     username: ${{ secrets.REGISTRY_USERNAME }}
-      #     password: ${{ secrets.REGISTRY_PASSWORD }}
-      # - run: |
-      #     docker build . -t contoso.azurecr.io/nodejssampleapp:${{ github.sha }}
-      #     docker push contoso.azurecr.io/nodejssampleapp:${{ github.sha }}
+      - name: Build and Push image to ACR
+        run: |
+          docker build . -t pipelinexample.azurecr.io/pipeline-example-backend:${{ github.sha }}
+          docker push pipelinexample.azurecr.io/pipeline-example-backend:${{ github.sha }}
 
   # deploy:
   #   runs-on: ubuntu-latest
