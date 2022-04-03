@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 env:
-  IMAGE_TAG: chalvinwz/pipeline-example-backend:$GITHUB_SHA
+  IMAGE_TAG: chalvinwz/pipeline-example-backend
 
 jobs:
   unit-test:
