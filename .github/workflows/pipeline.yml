@@ -25,3 +25,5 @@ jobs:
           go tool cover -html=coverage.out
           TOTAL_COV=$(go tool cover -func=coverage.out | grep total | tr -d '%' | awk '{print $3}')
           echo "Total Coverage: $TOTAL_COV"
+          cat unit-test.json
+          cat coverage.out
