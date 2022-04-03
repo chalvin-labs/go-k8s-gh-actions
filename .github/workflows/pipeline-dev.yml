@@ -81,7 +81,7 @@ jobs:
           secret-name: pipeline-example-backend-dev-secret
 
       - name: Deploy to AKS Development
-        uses: Azure/k8s-deploy@v1.4
+        uses: Azure/k8s-deploy@v2
         with:
           action: deploy
           manifests: |

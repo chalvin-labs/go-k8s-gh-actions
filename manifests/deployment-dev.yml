@@ -5,7 +5,7 @@ metadata:
   labels:
     app: pipeline-example-backend-dev
 spec:
-  replicas: 10
+  replicas: 20
   selector:
     matchLabels:
       app: pipeline-example-backend-dev
