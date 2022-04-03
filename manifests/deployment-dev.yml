@@ -16,7 +16,5 @@ spec:
     spec:
       containers:
         - name: pipeline-example-backend-dev
-          image: chalvinwz/pipeline-example-backend
-          imagePullPolicy: Always
           ports:
             - containerPort: 80
