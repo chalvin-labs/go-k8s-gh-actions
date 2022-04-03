@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pipeline-example-backend-dev
+  labels:
+    app: pipeline-example-backend-dev
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: pipeline-example-backend-dev
+  template:
+    metadata:
+      labels:
+        app: pipeline-example-backend-dev
+    spec:
+      containers:
+        - name: pipeline-example-backend-dev
+          image: chalvinwz/pipeline-example-backend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
