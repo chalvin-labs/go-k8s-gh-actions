@@ -80,7 +80,8 @@ jobs:
           container-registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
           secret-name: pipeline-example-backend-dev-secret
 
-      - uses: Azure/k8s-deploy@v1.4
+      - name: Deploy to AKS Development
+        uses: Azure/k8s-deploy@v1.4
         with:
           action: deploy
           manifests: |
@@ -90,6 +91,10 @@ jobs:
             ${{ secrets.AZURE_REGISTRY }}/pipeline-example-backend:${{ github.sha }}
           imagepullsecrets: |
             pipeline-example-backend-dev-secret
+
+      - run: |
+          kubectl get pods
+          kubectl get services
 
   # deploy-aci-dev:
   #   runs-on: ubuntu-latest
