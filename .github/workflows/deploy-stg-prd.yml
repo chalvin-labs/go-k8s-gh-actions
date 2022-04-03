@@ -67,7 +67,7 @@ jobs:
         uses: 'azure/aci-deploy@v1'
         with:
           resource-group: pipeline-example
-          dns-name-label: pipeline-example-backend
+          dns-name-label: pipeline-example-backend-stg
           image: ${{secrets.AZURE_REGISTRY}}:${{ github.sha }}
           cpu: 1
           memory: 1.5
@@ -93,7 +93,7 @@ jobs:
         uses: 'azure/aci-deploy@v1'
         with:
           resource-group: pipeline-example
-          dns-name-label: pipeline-example-backend
+          dns-name-label: pipeline-example-backend-prd
           image: ${{secrets.AZURE_REGISTRY}}:${{ github.sha }}
           cpu: 1
           memory: 1.5
