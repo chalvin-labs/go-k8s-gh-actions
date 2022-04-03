@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 env:
-  IMAGE_TAG: chalvinwz/pipeline-example-backend
+  IMAGE_TAG: chalvinwz/pipeline-example-backend:$GITHUB_SHA
 
 jobs:
   unit-test:
@@ -29,7 +29,6 @@ jobs:
         run: |
           go tool cover -func=coverage.out
           go tool cover -html=coverage.out
-          echo ${{env.IMAGE_TAG}}
 
   build-image:
     needs: unit-test
@@ -41,14 +40,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Login to dockerhub
+      - name: Login to Dockerhub
         uses: docker/login-action@v1
         with:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
       - name: Build and push image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: ${{env.IMAGE_TAG}}
+        run: |
+          docker build -t ${{env.IMAGE_TAG}} .
+          docker push ${{env.IMAGE_TAG}}
