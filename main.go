@@ -21,7 +21,7 @@ func main() {
       Name: "Chalvin",
       Age: 20,
       Address: "Indonesia",
-      Role: "DevOps",
+      Role: "DevOps Engineer",
     }
     return c.JSON(data)
   })
