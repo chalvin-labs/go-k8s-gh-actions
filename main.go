@@ -8,6 +8,7 @@ import (
 type Data struct {
   Name string `json:"name"`
   Age int `json:"age"`
+  Address string `json:"address"`
 }
 
 func main() {
@@ -18,6 +19,7 @@ func main() {
     data := Data{
       Name: "Chalvin",
       Age: 20,
+      Address: "Indonesia",
     }
     return c.JSON(data)
   })
