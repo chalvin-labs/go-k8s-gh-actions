@@ -5,6 +5,14 @@ on:
     workflows: ['Deploy Staging']
     types: [completed]
     branches: [master]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+    tags:
+      description: 'Test scenario tags'
 
 jobs:
   unit-test:
