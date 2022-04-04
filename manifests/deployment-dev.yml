@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: pipeline-example-backend-dev
-          image: ${{ secrets.AZURE_REGISTRY }}/pipeline-example-backend:${{ github.sha }}
+          image: pipelinexample.azurecr.io/pipeline-example-backend
           imagePullPolicy: Always
           ports:
             - containerPort: 80
