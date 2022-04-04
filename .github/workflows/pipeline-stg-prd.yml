@@ -75,7 +75,7 @@ jobs:
           container-registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
           secret-name: pipeline-example-backend-stg-secret
 
-      - name: Deploy to AKS Development
+      - name: Deploy to AKS Staging
         uses: Azure/k8s-deploy@v1.4
         with:
           action: deploy
@@ -112,7 +112,7 @@ jobs:
           container-registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
           secret-name: pipeline-example-backend-prd-secret
 
-      - name: Deploy to AKS Development
+      - name: Deploy to AKS Production
         uses: Azure/k8s-deploy@v1.4
         with:
           action: deploy
