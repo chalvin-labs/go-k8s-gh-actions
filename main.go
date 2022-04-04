@@ -10,6 +10,7 @@ type Data struct {
   Age int `json:"age"`
   Address string `json:"address"`
   Role string `json:"role"`
+  Height int `json:"height"`
 }
 
 func main() {
@@ -22,6 +23,7 @@ func main() {
       Age: 20,
       Address: "Indonesia",
       Role: "DevOps Engineer",
+      Height: 175,
     }
     return c.JSON(data)
   })
